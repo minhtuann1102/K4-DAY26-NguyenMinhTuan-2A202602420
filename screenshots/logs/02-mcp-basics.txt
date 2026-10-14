@@ -1,0 +1,15 @@
+# captured 2026-10-14 18:30:36 +0700
+
+## [02-mcp-basics] $ python weather_client.py
+Tools server cung cấp:
+  - get_weather: Lấy thời tiết hiện tại của một thành phố.
+
+call_tool get_weather(city='Hanoi'):
+  -> Hanoi: 29°C, trời mưa
+
+call_tool get_weather(city='Danang'):
+  -> Danang: 30°C, nhiều mây
+
+call_tool get_weather(city='Haiphong'):
+  -> Haiphong: 33°C, mưa rào
+[exit code 0]

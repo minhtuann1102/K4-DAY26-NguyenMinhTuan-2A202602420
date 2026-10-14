@@ -58,6 +58,10 @@ python auth_client.py              # terminal 2
 cd 03-production && python registry_client.py
 ```
 
+## Minh chứng đã chạy
+
+Ảnh chạy thử từng bước (Function Calling, MCP, Auth, Registry, Versioning, Docker, ADK web UI) và log gốc nằm ở [`screenshots/`](screenshots/README.md).
+
 ---
 
 ## Định nghĩa ngắn gọn
@@ -176,7 +180,7 @@ MCP server phục vụ qua **HTTP** cho nhiều client → cần xác thực. MC
 
 - Server: cấu hình `AuthSettings` + implement `TokenVerifier` protocol
 - Client: gửi header `Authorization: Bearer <token>` qua `create_mcp_http_client(headers=...)` của MCP SDK
-- Không có token → 401, token sai → 403, logic tool không biết gì về auth
+- Không có token hoặc token sai → 401 (token đúng nhưng thiếu scope → 403), logic tool không biết gì về auth
 
 | Tầng | Demo (stdio) | Production (HTTP) |
 |---|---|---|

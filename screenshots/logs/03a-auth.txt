@@ -1,0 +1,51 @@
+# captured 2026-10-14 18:31:26 +0700
+
+## [03-production] $ MCP_AUTH_PORT=8100 python auth_server.py   # terminal 1 — output bên dưới là log thật của server, ghi sau khi 3 request chạy xong
+INFO:     Started server process [8196]
+INFO:     Waiting for application startup.
+[10/14/26 18:31:23] INFO     StreamableHTTP      streamable_http_manager.py:162
+                             session manager                                   
+                             started                                           
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8100 (Press CTRL+C to quit)
+INFO:     127.0.0.1:53428 - "POST /mcp HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:53430 - "POST /mcp HTTP/1.1" 401 Unauthorized
+[10/14/26 18:31:24] INFO     Created new         streamable_http_manager.py:325
+                             transport with                                    
+                             session ID:                                       
+                             3504e47ab85e4ca1b08                               
+                             1ce612ba4ac38                                     
+INFO:     127.0.0.1:53436 - "POST /mcp HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53444 - "GET /mcp HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53443 - "POST /mcp HTTP/1.1" 202 Accepted
+INFO:     127.0.0.1:53446 - "POST /mcp HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53448 - "POST /mcp HTTP/1.1" 200 OK
+[10/14/26 18:31:26] INFO     Terminating session:        streamable_http.py:855
+                             3504e47ab85e4ca1b081ce612ba                       
+                             4ac38                                             
+INFO:     127.0.0.1:53450 - "DELETE /mcp HTTP/1.1" 200 OK
+
+## [03-production] $ curl.exe -s -o NUL -D - -X POST http://localhost:8100/mcp -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' -d '{...initialize...}'   # KHÔNG gửi token
+HTTP/1.1 401 Unauthorized
+date: Wed, 14 Oct 2026 11:31:23 GMT
+server: uvicorn
+content-type: application/json
+content-length: 74
+www-authenticate: Bearer error="invalid_token", error_description="Authentication required", resource_metadata="http://localhost:8100/.well-known/oauth-protected-resource"
+[exit code 0]
+
+## [03-production] $ curl.exe -s -o NUL -D - -X POST http://localhost:8100/mcp -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' -H 'Authorization: Bearer nope' -d '{...initialize...}'   # token SAI
+HTTP/1.1 401 Unauthorized
+date: Wed, 14 Oct 2026 11:31:23 GMT
+server: uvicorn
+content-type: application/json
+content-length: 74
+www-authenticate: Bearer error="invalid_token", error_description="Authentication required", resource_metadata="http://localhost:8100/.well-known/oauth-protected-resource"
+[exit code 0]
+
+## [03-production] $ MCP_AUTH_SERVER_URL=http://localhost:8100/mcp python auth_client.py   # token hợp lệ (dev-token-abc123 mặc định)
+Tools (có auth):
+  - get_weather: Lấy thời tiết hiện tại của một thành phố.
+
+Kết quả: Hanoi: 29°C, trời mưa
+[exit code 0]

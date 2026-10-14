@@ -1,0 +1,345 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 465B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 85B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 66B done
+#4 DONE 0.0s
+
+#5 [1/5] FROM docker.io/library/python:3.12-slim@sha256:05cda9777409a9c3ffddd94a4c476b79f0769a0b4857f0c7ed9226b6800b0d6f
+#5 resolve docker.io/library/python:3.12-slim@sha256:05cda9777409a9c3ffddd94a4c476b79f0769a0b4857f0c7ed9226b6800b0d6f 0.0s done
+#5 DONE 0.0s
+
+#6 [2/5] WORKDIR /app
+#6 CACHED
+
+#7 [3/5] COPY pyproject.toml ./
+#7 DONE 0.1s
+
+#8 [4/5] RUN pip install --no-cache-dir -e .
+#8 1.702 Obtaining file:///app
+#8 1.710   Installing build dependencies: started
+#8 4.837   Installing build dependencies: finished with status 'done'
+#8 4.838   Checking if build backend supports build_editable: started
+#8 5.010   Checking if build backend supports build_editable: finished with status 'done'
+#8 5.012   Getting requirements to build editable: started
+#8 5.209   Getting requirements to build editable: finished with status 'done'
+#8 5.211   Preparing editable metadata (pyproject.toml): started
+#8 5.442   Preparing editable metadata (pyproject.toml): finished with status 'done'
+#8 5.947 Collecting fastmcp>=2.12.4 (from my-weather-mcp-server==0.1.0)
+#8 6.237   Downloading fastmcp-4.1.0-py3-none-any.whl.metadata (9.2 kB)
+#8 6.326 Collecting httpx>=0.28.1 (from my-weather-mcp-server==0.1.0)
+#8 6.393   Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+#8 6.478 Collecting mcp<2,>=1.16 (from mcp[cli]<2,>=1.16->my-weather-mcp-server==0.1.0)
+#8 6.541   Downloading mcp-1.30.0-py3-none-any.whl.metadata (9.3 kB)
+#8 6.671 Collecting uvicorn>=0.27.0 (from my-weather-mcp-server==0.1.0)
+#8 6.745   Downloading uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+#8 7.246 Collecting starlette>=0.37.0 (from my-weather-mcp-server==0.1.0)
+#8 7.314   Downloading starlette-1.8.0-py3-none-any.whl.metadata (6.6 kB)
+#8 7.418 Collecting python-dotenv>=1.0.0 (from my-weather-mcp-server==0.1.0)
+#8 7.485   Downloading python_dotenv-1.2.4-py3-none-any.whl.metadata (29 kB)
+#8 7.623 Collecting fastmcp-slim==4.1.0 (from fastmcp-slim[client,server]==4.1.0->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 8.035   Downloading fastmcp_slim-4.1.0-py3-none-any.whl.metadata (10 kB)
+#8 8.155 Collecting mcp-types<3.0.0,>=2.0.0 (from fastmcp-slim==4.1.0->fastmcp-slim[client,server]==4.1.0->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 8.232   Downloading mcp_types-2.3.0-py3-none-any.whl.metadata (1.9 kB)
+#8 8.332 Collecting platformdirs>=4.0.0 (from fastmcp-slim==4.1.0->fastmcp-slim[client,server]==4.1.0->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 8.395   Downloading platformdirs-4.13.0-py3-none-any.whl.metadata (5.5 kB)
+#8 8.488 Collecting pydantic-settings>=2.0.0 (from fastmcp-slim==4.1.0->fastmcp-slim[client,server]==4.1.0->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 8.584   Downloading pydantic_settings-2.15.0-py3-none-any.whl.metadata (3.9 kB)
+#8 9.138 Collecting pydantic>=2.12.0 (from pydantic[email]>=2.12.0->fastmcp-slim==4.1.0->fastmcp-slim[client,server]==4.1.0->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 9.203   Downloading pydantic-2.14.1-py3-none-any.whl.metadata (133 kB)
+#8 9.416 Collecting rich>=13.9.4 (from fastmcp-slim==4.1.0->fastmcp-slim[client,server]==4.1.0->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 9.494   Downloading rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+#8 9.575 Collecting typing-extensions>=4.0.0 (from fastmcp-slim==4.1.0->fastmcp-slim[client,server]==4.1.0->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 9.661   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#8 10.11 Collecting authlib>=1.6.11 (from fastmcp-slim[client,server]==4.1.0->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 10.18   Downloading authlib-1.9.0-py2.py3-none-any.whl.metadata (10 kB)
+#8 10.27 Collecting exceptiongroup>=1.2.2 (from fastmcp-slim[client,server]==4.1.0->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 10.34   Downloading exceptiongroup-1.3.1-py3-none-any.whl.metadata (6.7 kB)
+#8 10.42 Collecting httpx2>=2.5.0 (from fastmcp-slim[client,server]==4.1.0->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 10.84   Downloading httpx2-2.13.1-py3-none-any.whl.metadata (9.8 kB)
+#8 10.85 INFO: pip is looking at multiple versions of fastmcp-slim[client,server] to determine which version is compatible with other requirements. This could take a while.
+#8 10.85 Collecting fastmcp>=2.12.4 (from my-weather-mcp-server==0.1.0)
+#8 10.93   Downloading fastmcp-4.0.11-py3-none-any.whl.metadata (9.2 kB)
+#8 11.02 Collecting anyio>=4.5 (from mcp<2,>=1.16->mcp[cli]<2,>=1.16->my-weather-mcp-server==0.1.0)
+#8 11.17   Downloading anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+#8 11.25 Collecting httpx-sse>=0.4 (from mcp<2,>=1.16->mcp[cli]<2,>=1.16->my-weather-mcp-server==0.1.0)
+#8 11.34   Downloading httpx_sse-0.4.3-py3-none-any.whl.metadata (9.7 kB)
+#8 11.48 Collecting jsonschema>=4.20.0 (from mcp<2,>=1.16->mcp[cli]<2,>=1.16->my-weather-mcp-server==0.1.0)
+#8 11.56   Downloading jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+#8 11.72 Collecting pyjwt>=2.10.1 (from pyjwt[crypto]>=2.10.1->mcp<2,>=1.16->mcp[cli]<2,>=1.16->my-weather-mcp-server==0.1.0)
+#8 11.91   Downloading pyjwt-2.15.1-py3-none-any.whl.metadata (3.5 kB)
+#8 12.00 Collecting python-multipart>=0.0.9 (from mcp<2,>=1.16->mcp[cli]<2,>=1.16->my-weather-mcp-server==0.1.0)
+#8 12.09   Downloading python_multipart-0.0.32-py3-none-any.whl.metadata (2.1 kB)
+#8 12.20 Collecting sse-starlette>=1.6.1 (from mcp<2,>=1.16->mcp[cli]<2,>=1.16->my-weather-mcp-server==0.1.0)
+#8 12.28   Downloading sse_starlette-3.5.0-py3-none-any.whl.metadata (15 kB)
+#8 12.42 Collecting typing-inspection>=0.4.1 (from mcp<2,>=1.16->mcp[cli]<2,>=1.16->my-weather-mcp-server==0.1.0)
+#8 12.48   Downloading typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+#8 12.49 Collecting fastmcp-slim==4.0.11 (from fastmcp-slim[client,server]==4.0.11->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 12.56   Downloading fastmcp_slim-4.0.11-py3-none-any.whl.metadata (10 kB)
+#8 12.60 Collecting fastmcp>=2.12.4 (from my-weather-mcp-server==0.1.0)
+#8 12.67   Downloading fastmcp-4.0.10-py3-none-any.whl.metadata (9.0 kB)
+#8 12.67 Collecting fastmcp-slim==4.0.10 (from fastmcp-slim[client,server]==4.0.10->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 12.74   Downloading fastmcp_slim-4.0.10-py3-none-any.whl.metadata (10 kB)
+#8 12.76 Collecting fastmcp>=2.12.4 (from my-weather-mcp-server==0.1.0)
+#8 12.82   Downloading fastmcp-4.0.9-py3-none-any.whl.metadata (9.0 kB)
+#8 12.83 Collecting fastmcp-slim==4.0.9 (from fastmcp-slim[client,server]==4.0.9->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 12.90   Downloading fastmcp_slim-4.0.9-py3-none-any.whl.metadata (10 kB)
+#8 12.91 Collecting fastmcp>=2.12.4 (from my-weather-mcp-server==0.1.0)
+#8 12.99   Downloading fastmcp-4.0.8-py3-none-any.whl.metadata (9.0 kB)
+#8 13.00 Collecting fastmcp-slim==4.0.8 (from fastmcp-slim[client,server]==4.0.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 13.08   Downloading fastmcp_slim-4.0.8-py3-none-any.whl.metadata (10 kB)
+#8 13.09 Collecting fastmcp>=2.12.4 (from my-weather-mcp-server==0.1.0)
+#8 13.17   Downloading fastmcp-4.0.7-py3-none-any.whl.metadata (9.0 kB)
+#8 13.17 Collecting fastmcp-slim==4.0.7 (from fastmcp-slim[client,server]==4.0.7->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 13.25   Downloading fastmcp_slim-4.0.7-py3-none-any.whl.metadata (10 kB)
+#8 13.27 Collecting fastmcp>=2.12.4 (from my-weather-mcp-server==0.1.0)
+#8 13.36   Downloading fastmcp-4.0.6-py3-none-any.whl.metadata (9.0 kB)
+#8 13.37 Collecting fastmcp-slim==4.0.6 (from fastmcp-slim[client,server]==4.0.6->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 13.52   Downloading fastmcp_slim-4.0.6-py3-none-any.whl.metadata (10 kB)
+#8 13.53 Collecting fastmcp>=2.12.4 (from my-weather-mcp-server==0.1.0)
+#8 13.60   Downloading fastmcp-4.0.5-py3-none-any.whl.metadata (8.9 kB)
+#8 13.60 Collecting fastmcp-slim==4.0.5 (from fastmcp-slim[client,server]==4.0.5->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 13.67   Downloading fastmcp_slim-4.0.5-py3-none-any.whl.metadata (10 kB)
+#8 13.68 INFO: pip is still looking at multiple versions of fastmcp-slim[client,server] to determine which version is compatible with other requirements. This could take a while.
+#8 13.68 Collecting fastmcp>=2.12.4 (from my-weather-mcp-server==0.1.0)
+#8 13.75   Downloading fastmcp-4.0.4-py3-none-any.whl.metadata (8.9 kB)
+#8 13.76 Collecting fastmcp-slim==4.0.4 (from fastmcp-slim[client,server]==4.0.4->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 13.82   Downloading fastmcp_slim-4.0.4-py3-none-any.whl.metadata (10 kB)
+#8 13.84 Collecting fastmcp>=2.12.4 (from my-weather-mcp-server==0.1.0)
+#8 13.93   Downloading fastmcp-4.0.3-py3-none-any.whl.metadata (8.9 kB)
+#8 13.94 Collecting fastmcp-slim==4.0.3 (from fastmcp-slim[client,server]==4.0.3->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 14.01   Downloading fastmcp_slim-4.0.3-py3-none-any.whl.metadata (10 kB)
+#8 14.02 Collecting fastmcp>=2.12.4 (from my-weather-mcp-server==0.1.0)
+#8 14.09   Downloading fastmcp-4.0.2-py3-none-any.whl.metadata (8.9 kB)
+#8 14.09 Collecting fastmcp-slim==4.0.2 (from fastmcp-slim[client,server]==4.0.2->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 14.16   Downloading fastmcp_slim-4.0.2-py3-none-any.whl.metadata (10 kB)
+#8 14.17 Collecting fastmcp>=2.12.4 (from my-weather-mcp-server==0.1.0)
+#8 14.23   Downloading fastmcp-4.0.1-py3-none-any.whl.metadata (8.9 kB)
+#8 14.24 Collecting fastmcp-slim==4.0.1 (from fastmcp-slim[client,server]==4.0.1->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 14.30   Downloading fastmcp_slim-4.0.1-py3-none-any.whl.metadata (10 kB)
+#8 14.31 Collecting fastmcp>=2.12.4 (from my-weather-mcp-server==0.1.0)
+#8 14.38   Downloading fastmcp-4.0.0-py3-none-any.whl.metadata (8.9 kB)
+#8 14.39 Collecting fastmcp-slim==4.0.0 (from fastmcp-slim[client,server]==4.0.0->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 14.45   Downloading fastmcp_slim-4.0.0-py3-none-any.whl.metadata (10 kB)
+#8 14.46 INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. See https://pip.pypa.io/warnings/backtracking for guidance. If you want to abort this run, press Ctrl + C.
+#8 14.46 Collecting fastmcp>=2.12.4 (from my-weather-mcp-server==0.1.0)
+#8 14.53   Downloading fastmcp-3.4.8-py3-none-any.whl.metadata (8.5 kB)
+#8 14.54 Collecting fastmcp-slim==3.4.8 (from fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 14.60   Downloading fastmcp_slim-3.4.8-py3-none-any.whl.metadata (10 kB)
+#8 14.72 Collecting opentelemetry-api>=1.20.0 (from fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 14.79   Downloading opentelemetry_api-1.45.1-py3-none-any.whl.metadata (1.4 kB)
+#8 14.86 Collecting py-key-value-aio<0.5.0,>=0.4.4 (from py-key-value-aio[filetree,keyring,memory]<0.5.0,>=0.4.4; extra == "client"->fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 14.92   Downloading py_key_value_aio-0.4.6-py3-none-any.whl.metadata (16 kB)
+#8 15.11 Collecting cyclopts>=4.0.0 (from fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 15.20   Downloading cyclopts-5.2.0-py3-none-any.whl.metadata (12 kB)
+#8 15.28 Collecting griffelib>=2.0.0 (from fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 15.34   Downloading griffelib-2.3.2-py3-none-any.whl.metadata (1.3 kB)
+#8 15.42 Collecting joserfc>=1.1.0 (from fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 15.50   Downloading joserfc-1.7.5-py3-none-any.whl.metadata (3.1 kB)
+#8 15.57 Collecting jsonref>=1.1.0 (from fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 15.64   Downloading jsonref-1.1.0-py3-none-any.whl.metadata (2.7 kB)
+#8 15.71 Collecting jsonschema-path>=0.3.4 (from fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 15.78   Downloading jsonschema_path-0.5.0-py3-none-any.whl.metadata (8.1 kB)
+#8 15.86 Collecting openapi-pydantic>=0.5.1 (from fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 15.92   Downloading openapi_pydantic-0.6.0-py3-none-any.whl.metadata (12 kB)
+#8 16.01 Collecting packaging>=24.0 (from fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 16.07   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+#8 16.16 Collecting pyperclip>=1.9.0 (from fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 16.22   Downloading pyperclip-1.11.0-py3-none-any.whl.metadata (2.4 kB)
+#8 16.34 Collecting pyyaml<7.0,>=6.0 (from fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 16.40   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+#8 16.47 Collecting uncalled-for>=0.2.0 (from fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 16.53   Downloading uncalled_for-0.4.1-py3-none-any.whl.metadata (3.3 kB)
+#8 16.72 Collecting watchfiles>=1.0.0 (from fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 16.78   Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+#8 17.05 Collecting websockets>=15.0.1 (from fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 17.11   Downloading websockets-17.2-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.3 kB)
+#8 17.20 Collecting certifi (from httpx>=0.28.1->my-weather-mcp-server==0.1.0)
+#8 17.26   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+#8 17.34 Collecting httpcore==1.* (from httpx>=0.28.1->my-weather-mcp-server==0.1.0)
+#8 17.40   Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+#8 17.49 Collecting idna (from httpx>=0.28.1->my-weather-mcp-server==0.1.0)
+#8 17.56   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+#8 17.63 Collecting h11>=0.16 (from httpcore==1.*->httpx>=0.28.1->my-weather-mcp-server==0.1.0)
+#8 17.70   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+#8 17.80 Collecting typer>=0.16.0 (from mcp[cli]<2,>=1.16->my-weather-mcp-server==0.1.0)
+#8 17.87   Downloading typer-0.27.3-py3-none-any.whl.metadata (16 kB)
+#8 18.00 Collecting click>=7.0 (from uvicorn>=0.27.0->my-weather-mcp-server==0.1.0)
+#8 18.07   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+#8 18.15 Collecting attrs>=22.2.0 (from jsonschema>=4.20.0->mcp<2,>=1.16->mcp[cli]<2,>=1.16->my-weather-mcp-server==0.1.0)
+#8 18.21   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+#8 18.29 Collecting jsonschema-specifications>=2023.03.6 (from jsonschema>=4.20.0->mcp<2,>=1.16->mcp[cli]<2,>=1.16->my-weather-mcp-server==0.1.0)
+#8 18.35   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+#8 18.44 Collecting referencing>=0.28.4 (from jsonschema>=4.20.0->mcp<2,>=1.16->mcp[cli]<2,>=1.16->my-weather-mcp-server==0.1.0)
+#8 18.50   Downloading referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
+#8 19.22 Collecting rpds-py>=0.25.0 (from jsonschema>=4.20.0->mcp<2,>=1.16->mcp[cli]<2,>=1.16->my-weather-mcp-server==0.1.0)
+#8 19.30   Downloading rpds_py-2026.9.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+#8 19.37 Collecting annotated-types>=0.6.0 (from pydantic>=2.12.0->pydantic[email]>=2.12.0->fastmcp-slim==4.1.0->fastmcp-slim[client,server]==4.1.0->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 19.43   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+#8 20.82 Collecting pydantic-core==2.50.1 (from pydantic>=2.12.0->pydantic[email]>=2.12.0->fastmcp-slim==4.1.0->fastmcp-slim[client,server]==4.1.0->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 20.89   Downloading pydantic_core-2.50.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.5 kB)
+#8 21.29 Collecting cryptography>=3.4.0 (from pyjwt[crypto]>=2.10.1->mcp<2,>=1.16->mcp[cli]<2,>=1.16->my-weather-mcp-server==0.1.0)
+#8 21.36   Downloading cryptography-50.0.2-cp311-abi3-manylinux_2_34_x86_64.whl.metadata (4.4 kB)
+#8 21.46 Collecting shellingham>=1.3.0 (from typer>=0.16.0->mcp[cli]<2,>=1.16->my-weather-mcp-server==0.1.0)
+#8 21.52   Downloading shellingham-1.5.4-py2.py3-none-any.whl.metadata (3.5 kB)
+#8 21.60 Collecting annotated-doc>=0.0.2 (from typer>=0.16.0->mcp[cli]<2,>=1.16->my-weather-mcp-server==0.1.0)
+#8 21.66   Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+#8 21.90 Collecting cffi>=2.0.0 (from cryptography>=3.4.0->pyjwt[crypto]>=2.10.1->mcp<2,>=1.16->mcp[cli]<2,>=1.16->my-weather-mcp-server==0.1.0)
+#8 21.96   Downloading cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.5 kB)
+#8 22.09 Collecting docstring-parser<4.0,>=0.15 (from cyclopts>=4.0.0->fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 22.15   Downloading docstring_parser-0.18.0-py3-none-any.whl.metadata (3.5 kB)
+#8 22.28 Collecting rich-rst<3,>=2.0.1 (from cyclopts>=4.0.0->fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 22.36   Downloading rich_rst-2.2.0-py3-none-any.whl.metadata (5.0 kB)
+#8 22.45 Collecting pathable<0.7.0,>=0.6.0 (from jsonschema-path>=0.3.4->fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 22.53   Downloading pathable-0.6.0-py3-none-any.whl.metadata (7.2 kB)
+#8 22.67 Collecting beartype>=0.20.0 (from py-key-value-aio<0.5.0,>=0.4.4->py-key-value-aio[filetree,keyring,memory]<0.5.0,>=0.4.4; extra == "client"->fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 22.87   Downloading beartype-0.23.1-py3-none-any.whl.metadata (35 kB)
+#8 23.34 Collecting aiofile>=3.12.3 (from py-key-value-aio[filetree,keyring,memory]<0.5.0,>=0.4.4; extra == "client"->fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 24.25   Downloading aiofile-3.12.3-py3-none-any.whl.metadata (17 kB)
+#8 24.39 Collecting keyring>=25.6.0 (from py-key-value-aio[filetree,keyring,memory]<0.5.0,>=0.4.4; extra == "client"->fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 24.49   Downloading keyring-25.7.0-py3-none-any.whl.metadata (21 kB)
+#8 24.58 Collecting cachetools>=5.0.0 (from py-key-value-aio[filetree,keyring,memory]<0.5.0,>=0.4.4; extra == "client"->fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 24.66   Downloading cachetools-7.2.1-py3-none-any.whl.metadata (5.5 kB)
+#8 24.74 Collecting email-validator>=2.0.0 (from pydantic[email]>=2.12.0->fastmcp-slim==4.1.0->fastmcp-slim[client,server]==4.1.0->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 24.83   Downloading email_validator-2.3.0-py3-none-any.whl.metadata (26 kB)
+#8 24.95 Collecting markdown-it-py>=2.2.0 (from rich>=13.9.4->fastmcp-slim==4.1.0->fastmcp-slim[client,server]==4.1.0->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 25.03   Downloading markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+#8 25.06 Collecting pygments<3.0.0,>=2.13.0 (from rich>=13.9.4->fastmcp-slim==4.1.0->fastmcp-slim[client,server]==4.1.0->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 25.15   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+#8 25.34 Collecting caio~=0.12.0 (from aiofile>=3.12.3->py-key-value-aio[filetree,keyring,memory]<0.5.0,>=0.4.4; extra == "client"->fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 25.40   Downloading caio-0.12.9-cp312-cp312-manylinux_2_34_x86_64.whl.metadata (4.6 kB)
+#8 25.50 Collecting pycparser (from cffi>=2.0.0->cryptography>=3.4.0->pyjwt[crypto]>=2.10.1->mcp<2,>=1.16->mcp[cli]<2,>=1.16->my-weather-mcp-server==0.1.0)
+#8 25.56   Downloading pycparser-3.11-py3-none-any.whl.metadata (8.2 kB)
+#8 25.65 Collecting dnspython>=2.0.0 (from email-validator>=2.0.0->pydantic[email]>=2.12.0->fastmcp-slim==4.1.0->fastmcp-slim[client,server]==4.1.0->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 25.71   Downloading dnspython-2.9.0-py3-none-any.whl.metadata (5.7 kB)
+#8 25.78 Collecting SecretStorage>=3.2 (from keyring>=25.6.0->py-key-value-aio[filetree,keyring,memory]<0.5.0,>=0.4.4; extra == "client"->fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 25.88   Downloading secretstorage-3.5.0-py3-none-any.whl.metadata (4.0 kB)
+#8 25.97 Collecting jeepney>=0.4.2 (from keyring>=25.6.0->py-key-value-aio[filetree,keyring,memory]<0.5.0,>=0.4.4; extra == "client"->fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 26.04   Downloading jeepney-0.9.0-py3-none-any.whl.metadata (1.2 kB)
+#8 26.12 Collecting jaraco.classes (from keyring>=25.6.0->py-key-value-aio[filetree,keyring,memory]<0.5.0,>=0.4.4; extra == "client"->fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 26.31   Downloading jaraco.classes-3.4.0-py3-none-any.whl.metadata (2.6 kB)
+#8 26.41 Collecting jaraco.functools (from keyring>=25.6.0->py-key-value-aio[filetree,keyring,memory]<0.5.0,>=0.4.4; extra == "client"->fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 26.52   Downloading jaraco_functools-4.6.0-py3-none-any.whl.metadata (2.9 kB)
+#8 26.59 Collecting jaraco.context (from keyring>=25.6.0->py-key-value-aio[filetree,keyring,memory]<0.5.0,>=0.4.4; extra == "client"->fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 26.65   Downloading jaraco_context-6.1.2-py3-none-any.whl.metadata (4.2 kB)
+#8 26.72 Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich>=13.9.4->fastmcp-slim==4.1.0->fastmcp-slim[client,server]==4.1.0->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 26.78   Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+#8 26.90 Collecting more-itertools (from jaraco.classes->keyring>=25.6.0->py-key-value-aio[filetree,keyring,memory]<0.5.0,>=0.4.4; extra == "client"->fastmcp-slim[client,server]==3.4.8->fastmcp>=2.12.4->my-weather-mcp-server==0.1.0)
+#8 26.96   Downloading more_itertools-11.2.0-py3-none-any.whl.metadata (42 kB)
+#8 27.05 Downloading mcp-1.30.0-py3-none-any.whl (234 kB)
+#8 27.19 Downloading fastmcp-3.4.8-py3-none-any.whl (8.0 kB)
+#8 27.25 Downloading fastmcp_slim-3.4.8-py3-none-any.whl (784 kB)
+#8 27.86    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 784.1/784.1 kB 1.1 MB/s eta 0:00:00
+#8 27.99 Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+#8 28.13 Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+#8 28.26 Downloading python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+#8 28.32 Downloading starlette-1.8.0-py3-none-any.whl (79 kB)
+#8 28.40 Downloading uvicorn-0.54.0-py3-none-any.whl (87 kB)
+#8 28.50 Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+#8 28.61 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+#8 28.71 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#8 28.78 Downloading httpx_sse-0.4.3-py3-none-any.whl (9.0 kB)
+#8 28.85 Downloading idna-3.20-py3-none-any.whl (69 kB)
+#8 28.92 Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+#8 29.01 Downloading pydantic-2.14.1-py3-none-any.whl (488 kB)
+#8 29.21 Downloading pydantic_core-2.50.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.2 MB)
+#8 30.46    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.2/2.2 MB 1.6 MB/s eta 0:00:00
+#8 30.53 Downloading pydantic_settings-2.15.0-py3-none-any.whl (69 kB)
+#8 30.61 Downloading pyjwt-2.15.1-py3-none-any.whl (33 kB)
+#8 30.68 Downloading python_multipart-0.0.32-py3-none-any.whl (30 kB)
+#8 30.76 Downloading sse_starlette-3.5.0-py3-none-any.whl (17 kB)
+#8 30.82 Downloading typer-0.27.3-py3-none-any.whl (123 kB)
+#8 30.92 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#8 31.00 Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+#8 31.08 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+#8 31.31 Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+#8 31.38 Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+#8 31.44 Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+#8 31.51 Downloading authlib-1.9.0-py2.py3-none-any.whl (265 kB)
+#8 31.66 Downloading cryptography-50.0.2-cp311-abi3-manylinux_2_34_x86_64.whl (4.8 MB)
+#8 34.72    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.8/4.8 MB 1.6 MB/s eta 0:00:00
+#8 34.78 Downloading cyclopts-5.2.0-py3-none-any.whl (289 kB)
+#8 35.03 Downloading exceptiongroup-1.3.1-py3-none-any.whl (16 kB)
+#8 35.09 Downloading griffelib-2.3.2-py3-none-any.whl (169 kB)
+#8 35.22 Downloading joserfc-1.7.5-py3-none-any.whl (71 kB)
+#8 35.30 Downloading jsonref-1.1.0-py3-none-any.whl (9.4 kB)
+#8 35.36 Downloading jsonschema_path-0.5.0-py3-none-any.whl (24 kB)
+#8 35.44 Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+#8 35.51 Downloading openapi_pydantic-0.6.0-py3-none-any.whl (96 kB)
+#8 35.61 Downloading opentelemetry_api-1.45.1-py3-none-any.whl (60 kB)
+#8 35.70 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#8 35.82 Downloading platformdirs-4.13.0-py3-none-any.whl (32 kB)
+#8 35.89 Downloading py_key_value_aio-0.4.6-py3-none-any.whl (171 kB)
+#8 36.05 Downloading pyperclip-1.11.0-py3-none-any.whl (11 kB)
+#8 36.11 Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+#8 36.47    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 2.0 MB/s eta 0:00:00
+#8 36.53 Downloading referencing-0.37.0-py3-none-any.whl (26 kB)
+#8 36.62 Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+#8 36.82 Downloading rpds_py-2026.9.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (371 kB)
+#8 37.22 Downloading shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+#8 37.30 Downloading uncalled_for-0.4.1-py3-none-any.whl (14 kB)
+#8 37.50 Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (458 kB)
+#8 37.76 Downloading websockets-17.2-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (225 kB)
+#8 37.91 Downloading aiofile-3.12.3-py3-none-any.whl (22 kB)
+#8 37.99 Downloading beartype-0.23.1-py3-none-any.whl (1.6 MB)
+#8 38.59    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 2.5 MB/s eta 0:00:00
+#8 38.66 Downloading cachetools-7.2.1-py3-none-any.whl (17 kB)
+#8 38.72 Downloading cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (221 kB)
+#8 38.83 Downloading docstring_parser-0.18.0-py3-none-any.whl (22 kB)
+#8 38.90 Downloading email_validator-2.3.0-py3-none-any.whl (35 kB)
+#8 38.96 Downloading keyring-25.7.0-py3-none-any.whl (39 kB)
+#8 39.03 Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+#8 39.12 Downloading pathable-0.6.0-py3-none-any.whl (18 kB)
+#8 39.19 Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+#8 39.79    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 1.9 MB/s eta 0:00:00
+#8 39.85 Downloading rich_rst-2.2.0-py3-none-any.whl (279 kB)
+#8 39.99 Downloading caio-0.12.9-cp312-cp312-manylinux_2_34_x86_64.whl (162 kB)
+#8 40.11 Downloading dnspython-2.9.0-py3-none-any.whl (354 kB)
+#8 40.28 Downloading jeepney-0.9.0-py3-none-any.whl (49 kB)
+#8 40.37 Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+#8 40.44 Downloading secretstorage-3.5.0-py3-none-any.whl (15 kB)
+#8 40.50 Downloading jaraco.classes-3.4.0-py3-none-any.whl (6.8 kB)
+#8 40.56 Downloading jaraco_context-6.1.2-py3-none-any.whl (7.9 kB)
+#8 40.64 Downloading jaraco_functools-4.6.0-py3-none-any.whl (11 kB)
+#8 40.72 Downloading pycparser-3.11-py3-none-any.whl (51 kB)
+#8 40.85 Downloading more_itertools-11.2.0-py3-none-any.whl (74 kB)
+#8 40.99 Building wheels for collected packages: my-weather-mcp-server
+#8 40.99   Building editable for my-weather-mcp-server (pyproject.toml): started
+#8 41.22   Building editable for my-weather-mcp-server (pyproject.toml): finished with status 'done'
+#8 41.22   Created wheel for my-weather-mcp-server: filename=my_weather_mcp_server-0.1.0-0.editable-py3-none-any.whl size=2893 sha256=f5927dad9df0e0af0db7d67fedd906698d65fcfd1ba3524bb35b255eb480124e
+#8 41.22   Stored in directory: /tmp/pip-ephem-wheel-cache-bij1z1gz/wheels/54/1b/b7/aa63e25c8f14f4f2ae7b04e6097bdecb770e455c5c1ee0a600
+#8 41.22 Successfully built my-weather-mcp-server
+#8 41.32 Installing collected packages: pyperclip, websockets, uncalled-for, typing-extensions, shellingham, rpds-py, pyyaml, python-multipart, python-dotenv, pyjwt, pygments, pycparser, platformdirs, pathable, packaging, more-itertools, mdurl, jsonref, jeepney, jaraco.context, idna, httpx-sse, h11, griffelib, docstring-parser, dnspython, click, certifi, caio, cachetools, beartype, attrs, annotated-types, annotated-doc, uvicorn, typing-inspection, referencing, pydantic-core, py-key-value-aio, opentelemetry-api, markdown-it-py, jaraco.functools, jaraco.classes, httpcore, exceptiongroup, email-validator, cffi, anyio, aiofile, watchfiles, starlette, rich, pydantic, jsonschema-specifications, jsonschema-path, httpx, cryptography, typer, sse-starlette, SecretStorage, rich-rst, pydantic-settings, openapi-pydantic, jsonschema, joserfc, mcp, keyring, fastmcp-slim, cyclopts, authlib, fastmcp, my-weather-mcp-server
+#8 47.20 Successfully installed SecretStorage-3.5.0 aiofile-3.12.3 annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 attrs-26.1.0 authlib-1.9.0 beartype-0.23.1 cachetools-7.2.1 caio-0.12.9 certifi-2026.7.22 cffi-2.1.1 click-8.5.0 cryptography-50.0.2 cyclopts-5.2.0 dnspython-2.9.0 docstring-parser-0.18.0 email-validator-2.3.0 exceptiongroup-1.3.1 fastmcp-3.4.8 fastmcp-slim-3.4.8 griffelib-2.3.2 h11-0.16.0 httpcore-1.0.9 httpx-0.28.1 httpx-sse-0.4.3 idna-3.20 jaraco.classes-3.4.0 jaraco.context-6.1.2 jaraco.functools-4.6.0 jeepney-0.9.0 joserfc-1.7.5 jsonref-1.1.0 jsonschema-4.26.0 jsonschema-path-0.5.0 jsonschema-specifications-2025.9.1 keyring-25.7.0 markdown-it-py-4.2.0 mcp-1.30.0 mdurl-0.1.2 more-itertools-11.2.0 my-weather-mcp-server-0.1.0 openapi-pydantic-0.6.0 opentelemetry-api-1.45.1 packaging-26.3 pathable-0.6.0 platformdirs-4.13.0 py-key-value-aio-0.4.6 pycparser-3.11 pydantic-2.14.1 pydantic-core-2.50.1 pydantic-settings-2.15.0 pygments-2.21.0 pyjwt-2.15.1 pyperclip-1.11.0 python-dotenv-1.2.4 python-multipart-0.0.32 pyyaml-6.0.3 referencing-0.37.0 rich-15.0.0 rich-rst-2.2.0 rpds-py-2026.9.1 shellingham-1.5.4 sse-starlette-3.5.0 starlette-1.8.0 typer-0.27.3 typing-extensions-4.16.0 typing-inspection-0.4.4 uncalled-for-0.4.1 uvicorn-0.54.0 watchfiles-1.3.0 websockets-17.2
+#8 47.20 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#8 47.51 
+#8 47.51 [notice] A new release of pip is available: 25.0.1 -> 26.2.1
+#8 47.51 [notice] To update, run: pip install --upgrade pip
+#8 DONE 48.5s
+
+#9 [5/5] COPY weather.py ./
+#9 DONE 0.1s
+
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers 3.7s done
+#10 exporting manifest sha256:0fa03d2d9be4a6a2047691240b40652b5087b1e571112d1c16bf9ff4443c7765 0.0s done
+#10 exporting config sha256:8d6bdcb7c46692058981e768d7551c0e3947100d99c0d6a2369683afb1328973 0.0s done
+#10 exporting attestation manifest sha256:b9bbb6b362f713d48f539fd7538f8cccd092a4a3a0849842af64ba7955af9a86 0.1s done
+#10 exporting manifest list sha256:67e83ed6d968c204e3fbe2882478a1603aafdd1ef82a6389713ce94dd4a598c2 0.0s done
+#10 naming to docker.io/library/weather-mcp:lab done
+#10 unpacking to docker.io/library/weather-mcp:lab
+#10 unpacking to docker.io/library/weather-mcp:lab 1.6s done
+#10 DONE 5.5s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/n4xkfd2ut34go1nup5q2itnj3

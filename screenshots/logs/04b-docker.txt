@@ -1,0 +1,97 @@
+# captured 2026-10-14 18:36:15 +0700
+
+## [04-lab/mcp-server] $ docker images weather-mcp
+IMAGE             ID             DISK USAGE   CONTENT SIZE   EXTRA
+weather-mcp:lab   67e83ed6d968        330MB         75.6MB   U    
+WARNING: This output is designed for human readability. For machine-readable output, please use --format.
+[exit code 0]
+
+## [04-lab/mcp-server] $ docker run --rm --entrypoint python weather-mcp:lab -c "import importlib.metadata as m; print('mcp', m.version('mcp'), '| fastmcp', m.version('fastmcp'))"
+mcp 1.30.0 | fastmcp 3.4.8
+[exit code 0]
+
+## [04-lab/mcp-server] $ docker run -d --name weather-mcp-run --env-file .env -e PORT=8080 -p 8086:8080 weather-mcp:lab   # đã chạy
+NAMES             IMAGE             PORTS                                         STATUS
+weather-mcp-run   weather-mcp:lab   0.0.0.0:8086->8080/tcp, [::]:8086->8080/tcp   Up 23 seconds
+[exit code 0]
+
+## [04-lab/mcp-server] $ python smoke_test.py http://localhost:8086/mcp   # gọi vào container
+MCP endpoint: http://localhost:8086/mcp
+list_tools -> ['get_current_weather', 'get_forecast', 'health_check']
+
+--- call_tool health_check({})
+✅ Weather MCP Server is running! Ready to provide weather data for Australian cities and worldwide.
+
+--- call_tool get_current_weather({'city': 'Hanoi'})
+Current Weather for Hanoi, , Vietnam:
+
+Temperature: 29.9°C (85.9°F)
+Feels like: 32.5°C (90.5°F)
+Condition: Cloudy
+Humidity: 59%
+Wind: 17.6 km/h (11.0 mph) SSE
+Pressure: 1012.0 mb
+UV Index: 0.0
+Visibility: 8.4 km
+
+Last updated: 2026-10-14 18:30
+
+--- call_tool get_forecast({'city': 'Danang', 'days': 2})
+Weather Forecast for Danang, , Vietnam:
+---
+
+2026-10-14:
+High: 27.3°C (81.1°F)
+Low: 21.4°C (70.5°F)
+Condition: Fog
+Chance of Rain: 86%
+Max Wind: 7.6 km/h
+UV Index: 9.2
+
+---
+
+2026-10-15:
+High: 28.9°C (84.0°F)
+Low: 20.4°C (68.8°F)
+Condition: Fog
+Chance of Rain: 60%
+Max Wind: 7.9 km/h
+UV Index: 9.0
+[exit code 0]
+
+## [04-lab/mcp-server] $ docker logs weather-mcp-run
+✅ MCP server initialized with Streamable HTTP transport
+🔧 Available tools: get_current_weather, get_forecast, health_check
+🚀 Starting MCP server on http://0.0.0.0:8080/mcp
+INFO:     172.17.0.1:58030 - "POST /mcp HTTP/1.1" 200 OK
+INFO:     172.17.0.1:58046 - "POST /mcp HTTP/1.1" 202 Accepted
+INFO:     172.17.0.1:58052 - "GET /mcp HTTP/1.1" 200 OK
+INFO:     172.17.0.1:58054 - "POST /mcp HTTP/1.1" 200 OK
+INFO:     172.17.0.1:58068 - "POST /mcp HTTP/1.1" 200 OK
+INFO:     172.17.0.1:58082 - "POST /mcp HTTP/1.1" 200 OK
+INFO:     172.17.0.1:58092 - "POST /mcp HTTP/1.1" 200 OK
+INFO:     172.17.0.1:54618 - "DELETE /mcp HTTP/1.1" 200 OK
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+[10/14/26 11:35:50] INFO     StreamableHTTP       streamable_http_manager.py:164
+                             session manager                                    
+                             started                                            
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+[10/14/26 11:36:14] INFO     Created new          streamable_http_manager.py:330
+                             transport with                                     
+                             session ID:                                        
+                             195fa93d6c1b470a80bc                               
+                             17314bf27727                                       
+                    INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+[10/14/26 11:36:15] INFO     Terminating session:         streamable_http.py:831
+                             195fa93d6c1b470a80bc17314bf2                       
+                             7727                                               
+[exit code 0]
