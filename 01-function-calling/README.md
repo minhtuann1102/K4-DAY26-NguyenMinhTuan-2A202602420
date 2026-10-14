@@ -21,6 +21,17 @@ export GEMINI_API_KEY=...
 python weather_function_calling.py
 ```
 
+## Cấu hình Google AI Studio API key
+
+Tạo file `.env` trong thư mục `01-function-calling/`:
+
+```env
+GEMINI_API_KEY=your_google_ai_studio_key
+```
+
+Key được truyền trực tiếp cho Google Gen AI SDK qua `api_key`; không dùng
+OAuth Bearer header.
+
 ## File
 
 | File | Mô tả |

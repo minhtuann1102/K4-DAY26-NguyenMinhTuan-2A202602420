@@ -9,12 +9,26 @@ Cách chạy:
     python weather_function_calling.py
 """
 
+import os
+import time
+import unicodedata
+from pathlib import Path
+
+from dotenv import load_dotenv
 from google import genai
-from google.genai import types
+from google.genai import errors, types
 
-client = genai.Client()
+load_dotenv(Path(__file__).with_name(".env"))
+api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+if not api_key:
+    raise RuntimeError("Thiếu GEMINI_API_KEY hoặc GOOGLE_API_KEY trong file .env")
 
-MODEL = "gemini-2.5-flash"
+# AI Studio API keys must be supplied as ``api_key``. Do not send them in an
+# Authorization: Bearer header; that header is reserved for OAuth access tokens.
+print("🔑 Sử dụng Google AI Studio API key")
+client = genai.Client(api_key=api_key)
+
+MODEL = "gemini-3.5-flash-lite"
 
 SYSTEM_INSTRUCTION = (
     "Bạn là trợ lý thời tiết thân thiện, trả lời bằng tiếng Việt tự nhiên. "
@@ -39,6 +53,35 @@ get_weather_declaration = types.FunctionDeclaration(
 )
 
 TOOLS = [types.Tool(function_declarations=[get_weather_declaration])]
+
+
+def generate_with_retry(contents: list[types.Content]):
+    """Call Gemini again after transient overload errors (HTTP 5xx)."""
+    config = types.GenerateContentConfig(
+        tools=TOOLS,
+        system_instruction=SYSTEM_INSTRUCTION,
+    )
+    for attempt in range(3):
+        try:
+            return client.models.generate_content(
+                model=MODEL,
+                contents=contents,
+                config=config,
+            )
+        except errors.ServerError:
+            if attempt == 2:
+                raise
+            delay = 2 ** (attempt + 1)
+            print(f"  [Gemini đang quá tải, thử lại sau {delay}s...]")
+            time.sleep(delay)
+
+
+def _city_key(name: str) -> str:
+    """Bỏ dấu, bỏ khoảng trắng, hạ chữ thường: "Đà Nẵng" / "Da Nang" / "danang" -> "danang"."""
+    name = name.replace("Đ", "D").replace("đ", "d")  # Đ/đ không có dạng tổ hợp trong NFD
+    decomposed = unicodedata.normalize("NFD", name)
+    stripped = "".join(c for c in decomposed if not unicodedata.combining(c))
+    return "".join(stripped.split()).casefold()
 
 
 # 2. App tự thực thi tool (trong thực tế sẽ gọi API thời tiết thật)
@@ -66,8 +109,15 @@ def get_weather(city: str) -> str:
     }
     import json
 
+    # Model có thể truyền "Hanoi", "Ha Noi" hay "Hà Nội" — chuẩn hoá về cùng một khoá.
+    by_key = {_city_key(name): data for name, data in mock_data.items()}
+    for alias, canonical in {"saigon": "Hồ Chí Minh", "hcmc": "Hồ Chí Minh"}.items():
+        by_key[alias] = mock_data[canonical]
+
     default = {"nhiệt_độ": "28°C", "thời_tiết": "không có dữ liệu chi tiết"}
-    return json.dumps({"city": city, **mock_data.get(city, default)}, ensure_ascii=False)
+    return json.dumps(
+        {"city": city, **by_key.get(_city_key(city), default)}, ensure_ascii=False
+    )
 
 
 def run(prompt: str) -> str:
@@ -77,14 +127,7 @@ def run(prompt: str) -> str:
     ]
 
     # 3. Gọi model — model quyết định có gọi tool hay không
-    resp = client.models.generate_content(
-        model=MODEL,
-        contents=contents,
-        config=types.GenerateContentConfig(
-            tools=TOOLS,
-            system_instruction=SYSTEM_INSTRUCTION,
-        ),
-    )
+    resp = generate_with_retry(contents)
 
     # 4. Vòng lặp: nếu model yêu cầu tool, app TỰ THỰC THI rồi đưa kết quả trả lại
     while resp.function_calls:
@@ -104,14 +147,7 @@ def run(prompt: str) -> str:
 
         # Gửi kết quả tool trả về cho model
         contents.append(types.Content(role="user", parts=function_responses))
-        resp = client.models.generate_content(
-            model=MODEL,
-            contents=contents,
-            config=types.GenerateContentConfig(
-                tools=TOOLS,
-                system_instruction=SYSTEM_INSTRUCTION,
-            ),
-        )
+        resp = generate_with_retry(contents)
 
     # 5. Model tổng hợp câu trả lời cuối
     return resp.text

@@ -51,7 +51,7 @@ Client                                Server
 
 - Token hợp lệ → truy cập tool bình thường
 - Thiếu token → `401`
-- Token sai → `403`
+- Token sai → `401` (SDK dùng `401` cho cả token thiếu lẫn token không hợp lệ; `403` dành cho token đúng nhưng thiếu scope)
 - Logic tool không biết gì về auth — SDK xử lý ở tầng transport
 
 ---

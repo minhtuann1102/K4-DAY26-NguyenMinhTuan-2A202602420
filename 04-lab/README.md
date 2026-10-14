@@ -33,7 +33,7 @@ ADK (Agent Development Kit) đóng vai trò **MCP Client**
 │     → nhận về: get_current_weather, get_forecast, health_check  │
 │                                                                 │
 │  3. TRUYỀN tools cho LLM (Gemini)                               │
-│     Agent(model="gemini-2.5-flash", tools=[weather_tools])      │
+│     Agent(model="gemini-3.5-flash-lite", tools=[weather_tools]) │
 │     → Gemini biết nó có thể gọi 3 tools trên                    │
 │                                                                 │
 │  4. ĐIỀU PHỐI vòng lặp Function Calling                         │
@@ -64,6 +64,12 @@ uv run python weather.py
 ```
 
 The server will be available at `http://localhost:8085/mcp`.
+
+Smoke test (liệt kê tool và gọi thử cả 3 tool; truyền URL khác để thử Docker/Cloud Run):
+
+```bash
+uv run python smoke_test.py            # http://localhost:8085/mcp
+```
 
 ### 2. ADK Agent (Client)
 

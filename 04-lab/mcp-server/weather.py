@@ -1,12 +1,29 @@
 from typing import Any
-import asyncio
 import httpx
+import logging
 import os
+import sys
+from dotenv import load_dotenv
 from mcp.server.fastmcp import FastMCP
+
+# Windows uses a legacy console encoding for redirected output by default.  The
+# server emits Unicode in tool responses and startup messages, so explicitly
+# use UTF-8 to keep a background/local launch from failing before it binds.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
+load_dotenv()
 
 # Initialize FastMCP server
 port = int(os.getenv("PORT", 8085))
 mcp = FastMCP("weather", host="0.0.0.0", port=port)
+
+# WeatherAPI nhận API key qua query string (?key=...). httpx ghi URL đầy đủ của mỗi
+# request ở mức INFO, nên key sẽ lọt vào log (kể cả Cloud Run logging). Hạ xuống WARNING.
+logging.getLogger("httpx").setLevel(logging.WARNING)
+logging.getLogger("httpcore").setLevel(logging.WARNING)
 
 # Constants
 WEATHERAPI_BASE = "https://api.weatherapi.com/v1"
@@ -90,8 +107,8 @@ async def get_forecast(city: str, days: int = 3) -> str:
         city: City name (e.g., "Hanoi", "Haiphong", "Danang", "Brisbane", "Sydney", "Melbourne")
         days: Number of days to forecast (1-3 for free tier, max 10 for paid)
     """
-    # Limit days to 3 for free tier
-    days = min(days, 3)
+    # WeatherAPI's free tier accepts 1--3 forecast days.
+    days = max(1, min(days, 3))
     
     params = {
         "q": city,
